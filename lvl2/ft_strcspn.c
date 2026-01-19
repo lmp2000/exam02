@@ -1,21 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lude-jes <lude-jes@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/19 18:38:44 by lude-jes          #+#    #+#             */
-/*   Updated: 2026/01/19 18:49:42 by lude-jes         ###   ########.fr       */
+/*   Created: 2026/01/19 19:12:41 by lude-jes          #+#    #+#             */
+/*   Updated: 2026/01/19 19:20:05 by lude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+#include <unistd.h>
+
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	while (*s1 && *s2 && *s1 == *s2)
+	int		check;
+	int		j;
+	size_t	i;
+
+	i = 0;
+	while (s[i])
 	{
-		s1++;
-		s2++;
+		check = 0;
+		j = 0;
+		while (reject[j])
+		{
+			if (s[i] == reject[j])
+			{
+				check = 1;
+				break ;
+			}
+			j++;
+		}
+		if (check == 1)
+			return (i);
+		i++;
 	}
-	return (*s1 - *s2);
+	return (i);
 }
