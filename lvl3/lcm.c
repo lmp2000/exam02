@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   lcm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lude-jes <lude-jes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/20 14:38:03 by lude-jes          #+#    #+#             */
-/*   Updated: 2026/01/20 20:03:42 by lude-jes         ###   ########.fr       */
+/*   Created: 2026/01/20 19:43:04 by lude-jes          #+#    #+#             */
+/*   Updated: 2026/01/20 19:50:22 by lude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int	main(int ac, char **av)
+unsigned int    lcm(unsigned int a, unsigned int b)
 {
-	char	*ptr;
-	int		space;
-
-	if (ac != 2)
-	{
-		write (1, "\n", 1);
+	unsigned int g = (a > b) ? a : b;
+	
+	if (a == 0 || b == 0)
 		return (0);
-	}
-	ptr = av[1];
-	while (*ptr == 32 || (*ptr >= 9 && *ptr <= 13))
-		ptr++;
-	while (*ptr)
+	while (1)
 	{
-		space = 0;
-		while (*ptr == 32 || (*ptr >= 9 && *ptr <= 13))
-		{
-			ptr++;
-			space++;
-		}
-		if (space && *ptr)
-			write (1, " ", 1);
-		if (*ptr)
-			write (1, ptr++, 1);
+		if ((g % a == 0) && (g % b == 0))
+			return (g);
+		g++;
 	}
-	write (1, "\n", 1);
+	return (g);
 }

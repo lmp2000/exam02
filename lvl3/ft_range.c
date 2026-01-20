@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lude-jes <lude-jes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/20 14:38:03 by lude-jes          #+#    #+#             */
-/*   Updated: 2026/01/20 20:03:42 by lude-jes         ###   ########.fr       */
+/*   Created: 2026/01/20 17:48:07 by lude-jes          #+#    #+#             */
+/*   Updated: 2026/01/20 18:22:30 by lude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-int	main(int ac, char **av)
+int	*ft_range(int start, int end)
 {
-	char	*ptr;
-	int		space;
+	int		size;
+	int		*ret;
+	int		i;
 
-	if (ac != 2)
+	i = 0;
+	size = end - start < 0 ? (end - start) * -1 + 1 : end - start + 1;
+	ret = malloc(size * sizeof(int));
+	if (!ret)
+		return (NULL);
+	while (i < size)
 	{
-		write (1, "\n", 1);
-		return (0);
+		if (start < end)
+			ret[i] = start + i;
+		else
+			ret[i] = start - i;
+		i++;
 	}
-	ptr = av[1];
-	while (*ptr == 32 || (*ptr >= 9 && *ptr <= 13))
-		ptr++;
-	while (*ptr)
-	{
-		space = 0;
-		while (*ptr == 32 || (*ptr >= 9 && *ptr <= 13))
-		{
-			ptr++;
-			space++;
-		}
-		if (space && *ptr)
-			write (1, " ", 1);
-		if (*ptr)
-			write (1, ptr++, 1);
-	}
-	write (1, "\n", 1);
+	return (ret);
 }

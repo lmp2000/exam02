@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   paramsum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lude-jes <lude-jes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/20 14:38:03 by lude-jes          #+#    #+#             */
-/*   Updated: 2026/01/20 20:03:42 by lude-jes         ###   ########.fr       */
+/*   Created: 2026/01/20 19:50:53 by lude-jes          #+#    #+#             */
+/*   Updated: 2026/01/20 19:56:14 by lude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
+void ft_putnbr(int nbr)
+{
+    if (nbr >= 10)
+        ft_putnbr(nbr / 10);
+    char c = nbr % 10 + '0';
+    write(1, &c, 1);
+}
+
 int	main(int ac, char **av)
 {
+	int		count;
 	char	*ptr;
-	int		space;
 
-	if (ac != 2)
-	{
-		write (1, "\n", 1);
-		return (0);
-	}
-	ptr = av[1];
-	while (*ptr == 32 || (*ptr >= 9 && *ptr <= 13))
-		ptr++;
-	while (*ptr)
-	{
-		space = 0;
-		while (*ptr == 32 || (*ptr >= 9 && *ptr <= 13))
-		{
-			ptr++;
-			space++;
-		}
-		if (space && *ptr)
-			write (1, " ", 1);
-		if (*ptr)
-			write (1, ptr++, 1);
-	}
+	count = ac - 1;
+	ft_putnbr(count);
 	write (1, "\n", 1);
+	return (0);
 }
