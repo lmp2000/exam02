@@ -6,7 +6,7 @@
 /*   By: lude-jes <lude-jes@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:49:52 by lude-jes          #+#    #+#             */
-/*   Updated: 2026/01/19 19:13:44 by lude-jes         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:47:35 by lude-jes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strspn(const char *s, const char *accept)
 	count = 0;
 	while (*s)
 	{
-		ptr = (char *)accept;		// ma pratica, a partir daqui ja nao tenho a proteção do compilador com o const char pointer
+		ptr = (char *)accept;		// na pratica, a partir daqui ja nao tenho a proteção do compilador com o const char pointer
 		while (*ptr)
 		{
 			if (*s == *ptr)
